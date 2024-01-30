@@ -1,12 +1,12 @@
 package game;
 
-import game.pieces.ChessPiece;
+import game.chess.ChessPosition;
+import game.chess.ChessPiece;
 
 public class Movement implements Play {
     private ChessPiece piece;
     private ChessPosition from;
     private ChessPosition to;
-    //getters and setters
 
     public ChessPiece getPiece() {
         return this.piece;

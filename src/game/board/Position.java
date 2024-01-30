@@ -1,4 +1,4 @@
-package game;
+package game.board;
 
 public class Position {
     private int row;
@@ -9,25 +9,30 @@ public class Position {
         this.column = column;
     }
 
-    public void setValues(int row, int column) {
-        this.row = row;
-        this.column = column;
-    }
-
     public int getRow() {
         return row;
-    }
-
-    public int getColumn() {
-        return column;
     }
 
     public void setRow(int row) {
         this.row = row;
     }
 
-    public void setColumn(int column) {
-        this.row = column;
+    public int getColumn() {
+        return column;
+    }
+
+    public void setColumn(int coluna) {
+        this.column = coluna;
+    }
+
+    public void setValues(int row, int column) {
+        this.row = row;
+        this.column = column;
+    }
+
+    @Override
+    public String toString() {
+        return column + ", " + column;
     }
 
 }

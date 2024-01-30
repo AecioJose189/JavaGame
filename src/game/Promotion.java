@@ -1,6 +1,6 @@
 package game;
 
-import game.pieces.ChessPiece;
+import game.chess.ChessPiece;
 
 public class Promotion implements Play {
     private ChessPiece initialPieace;

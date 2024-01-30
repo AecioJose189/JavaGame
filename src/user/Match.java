@@ -15,7 +15,7 @@ public class Match {
     private LocalDateTime date;
 
     public String getWinnerName() {
-        return winner == Player.PLAYER1 ? player1.getName() : player2;
+        return winner == Player.WHITE ? player1.getName() : player2;
     }
 
 //getters and setters

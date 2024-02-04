@@ -12,7 +12,7 @@ import game.board.Position;
 
 import game.chess.pieces.Pawn;
 import game.chess.pieces.King;
-import game.chess.pieces.Bioshop;
+import game.chess.pieces.Bishop;
 import game.chess.pieces.Horse;
 import game.chess.pieces.Queen;
 import game.chess.pieces.Tower;
@@ -87,7 +87,7 @@ public class ChessMatch {
 
 		if (testCheck(currentPlayer)) {
 			undoMove(source, target, capturedPiece);
-			throw new ChessException("You cab't put yourself in isCheck");
+			throw new ChessException("Você não pode se colocar em uma posição de check");
 		}
 
 		ChessPiece movedPiece = (ChessPiece) board.piece(target);
@@ -121,10 +121,10 @@ public class ChessMatch {
 
 	public ChessPiece replacePromotedPiece(String type) {
 		if (promoted == null) {
-			throw new IllegalStateException("There is no piece to be promoted");
+			throw new IllegalStateException("Não tem peça para ser promovida");
 		}
-		if (!type.equals("B") && !type.equals("C") && !type.equals("T") & !type.equals("Q")) {
-			throw new InvalidParameterException("Inavalid type for promotion");
+		if (!type.equals("B") && !type.equals("H") && !type.equals("T") & !type.equals("Q")) {
+			throw new InvalidParameterException("Tipo inválido para promoção");
 		}
 		Position pos = promoted.getChessPosition().toPosition();
 		Piece p = board.removePiece(pos);
@@ -139,8 +139,8 @@ public class ChessMatch {
 
 	private ChessPiece newPiece(String type, Player color) {
 		if (type.equals("B"))
-			return new Bioshop(board, color);
-		if (type.equals("C"))
+			return new Bishop(board, color);
+		if (type.equals("H"))
 			return new Horse(board, color);
 		if (type.equals("Q"))
 			return new Queen(board, color);
@@ -250,20 +250,20 @@ public class ChessMatch {
 
 	private void validateSourcePosition(Position position) {
 		if (!board.thereIsAPiece(position)) {
-			throw new ChessException("There is not piece on sours position");
+			throw new ChessException("Não há uma peça na posição escolhida");
 		}
 		if (currentPlayer != ((ChessPiece) board.piece(position)).getPlayer()) {
-			throw new ChessException("The chose piece is not yours");
+			throw new ChessException("A peça escolhida não é sua");
 		}
 		if (!board.piece(position).isThereAnyPossibleMove()) {
-			throw new ChessException("There is no possible moves for the chosen piece");
+			throw new ChessException("Não há movimentos possíveis para a peça escolhida");
 
 		}
 	}
 
 	public void validateTargetPosition(Position source, Position target) {
 		if (!board.piece(source).possibleMoves(target)) {
-			throw new ChessException("The chosen piece can't move to target position");
+			throw new ChessException("A peça escolhida não pode ser movida");
 		}
 	}
 
@@ -284,7 +284,7 @@ public class ChessMatch {
 				return (ChessPiece) p;
 			}
 		}
-		throw new IllegalStateException("There is no" + color + "King on the board");
+		throw new IllegalStateException("Não tem" + color + "Rei no tabuleiro");
 	}
 
 	private boolean testCheck(Player color) {
@@ -336,10 +336,10 @@ public class ChessMatch {
 	private void initialSetup() {
 		placeNewPiece('a', 1, new Tower(board, Player.WHITE));
 		placeNewPiece('b', 1, new Horse(board, Player.WHITE));
-		placeNewPiece('c', 1, new Bioshop(board, Player.WHITE));
+		placeNewPiece('c', 1, new Bishop(board, Player.WHITE));
 		placeNewPiece('d', 1, new Queen(board, Player.WHITE));
 		placeNewPiece('e', 1, new King(board, Player.WHITE, this));
-		placeNewPiece('f', 1, new Bioshop(board, Player.WHITE));
+		placeNewPiece('f', 1, new Bishop(board, Player.WHITE));
 		placeNewPiece('g', 1, new Horse(board, Player.WHITE));
 		placeNewPiece('h', 1, new Tower(board, Player.WHITE));
 		placeNewPiece('a', 2, new Pawn(board, Player.WHITE, this));
@@ -353,10 +353,10 @@ public class ChessMatch {
 
 		placeNewPiece('a', 8, new Tower(board, Player.RED));
 		placeNewPiece('b', 8, new Horse(board, Player.RED));
-		placeNewPiece('c', 8, new Bioshop(board, Player.RED));
+		placeNewPiece('c', 8, new Bishop(board, Player.RED));
 		placeNewPiece('d', 8, new Queen(board, Player.RED));
 		placeNewPiece('e', 8, new King(board, Player.RED, this));
-		placeNewPiece('f', 8, new Bioshop(board, Player.RED));
+		placeNewPiece('f', 8, new Bishop(board, Player.RED));
 		placeNewPiece('g', 8, new Horse(board, Player.RED));
 		placeNewPiece('h', 8, new Tower(board, Player.RED));
 		placeNewPiece('a', 7, new Pawn(board, Player.RED, this));

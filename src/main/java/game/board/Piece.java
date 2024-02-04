@@ -3,7 +3,6 @@ package game.board;
 public abstract class Piece {
 	protected Position position;
 	protected Board board;
-	
 
 	public Piece(Board board) {
 		this.board = board;
@@ -16,8 +15,8 @@ public abstract class Piece {
 	
 	public abstract boolean[][] possibleMoves();
 	
-	public boolean possibleMoves(Position posicao) {
-		return possibleMoves()[posicao.getRow()][posicao.getColumn()];
+	public boolean possibleMoves(Position position) {
+		return possibleMoves()[position.getRow()][position.getColumn()];
 	}
 	
 	public boolean isThereAnyPossibleMove() {
